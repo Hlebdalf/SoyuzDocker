@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ControllerScript : MonoBehaviour
 {
+    public UIManager uI;
     public float MoveSpeed = 1;
     public float TorqSpeed = 1;
     private Rigidbody _rb;
+    private Vector3 _rotator = new Vector3(0,0,0);
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-
+        StartCoroutine(RotatorCoroutine());
     }
     private void Update()
     {
-      
+
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             _rb.AddRelativeForce(new Vector3(0, MoveSpeed, 0));
@@ -42,28 +44,37 @@ public class ControllerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            _rb.AddRelativeTorque(new Vector3(0, TorqSpeed, 0));
+            _rotator +=(new Vector3(0, TorqSpeed, 0));
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            _rb.AddRelativeTorque(new Vector3(0, -TorqSpeed, 0));
+            _rotator +=(new Vector3(0, -TorqSpeed, 0));
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            _rb.AddRelativeTorque(new Vector3(-TorqSpeed, 0, 0));
+            _rotator +=(new Vector3(-TorqSpeed, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            _rb.AddRelativeTorque(new Vector3(TorqSpeed, 0, 0));
+            _rotator +=(new Vector3(TorqSpeed, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            _rb.AddRelativeTorque(new Vector3(0, 0, TorqSpeed));
+            _rotator +=(new Vector3(0, 0, TorqSpeed));
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            _rb.AddRelativeTorque(new Vector3(0, 0, -TorqSpeed));
+            _rotator +=(new Vector3(0, 0, -TorqSpeed));
         }
+    }
 
+    private IEnumerator RotatorCoroutine()
+    {
+        while (true)
+        {   
+            transform.Rotate(_rotator);
+            uI.SetTorque(_rotator);
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

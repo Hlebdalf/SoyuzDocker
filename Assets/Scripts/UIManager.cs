@@ -23,9 +23,8 @@ public class UIManager : MonoBehaviour
 
     public void SetTorque(Vector3 torque)
     {
-        TX.text = torque.x.ToString();
-        TY.text = torque.y.ToString();
-        TZ.text = torque.z.ToString();
-        Debug.Log(torque);
+        TX.text = (((int)(torque.x * 100)) / 100f ).ToString();
+        TY.text = (((int)(torque.y * 100)) / 100f).ToString();
+        TZ.text = (((int)(torque.z * 100)) / 100f).ToString();
     }
 }

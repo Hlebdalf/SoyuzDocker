@@ -17,10 +17,8 @@ public class VelocityChecker : MonoBehaviour
 
     void FixedUpdate()
     {
-        //_nowAngle = transform.localRotation.eulerAngles;
         _nowAngle = transform.localRotation.eulerAngles;
         uI.SetVelocity(_rb.velocity);
-        uI.SetTorque((_nowAngle - _preAngle)/Time.deltaTime );
         _preAngle = _nowAngle;
     }
 }
