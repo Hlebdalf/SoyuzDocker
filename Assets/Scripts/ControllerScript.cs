@@ -7,39 +7,38 @@ public class ControllerScript : MonoBehaviour
     public UIManager uI;
     public float MoveSpeed = 1;
     public float TorqSpeed = 1;
-    private Rigidbody _rb;
-    private Vector3 _rotator = new Vector3(0,0,0);
+    private Vector3 _rotator = new Vector3(0, 0, 0);
+    private Vector3 _positor = new Vector3(0, 0, 0);
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        StartCoroutine(RotatorCoroutine());
+        StartCoroutine(MoverCoroutine());
     }
     private void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            _rb.AddRelativeForce(new Vector3(0, MoveSpeed, 0));
+        {   
+            _positor +=(new Vector3(0, MoveSpeed, 0));
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            _rb.AddRelativeForce(new Vector3(0, -MoveSpeed, 0));
+            _positor +=(new Vector3(0, -MoveSpeed, 0));
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            _rb.AddRelativeForce(new Vector3(MoveSpeed, 0, 0));
+            _positor +=(new Vector3(MoveSpeed, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            _rb.AddRelativeForce(new Vector3(-MoveSpeed, 0, 0));
+            _positor +=(new Vector3(-MoveSpeed, 0, 0));
         }
         if (Input.GetKeyDown(KeyCode.PageUp))
         {
-            _rb.AddRelativeForce(new Vector3(0, 0, MoveSpeed));
+            _positor +=(new Vector3(0, 0, MoveSpeed));
         }
         if (Input.GetKeyDown(KeyCode.PageDown))
         {
-            _rb.AddRelativeForce(new Vector3(0, 0, -MoveSpeed));
+            _positor +=(new Vector3(0, 0, -MoveSpeed));
         }
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -68,12 +67,14 @@ public class ControllerScript : MonoBehaviour
         }
     }
 
-    private IEnumerator RotatorCoroutine()
+    private IEnumerator MoverCoroutine()
     {
         while (true)
         {   
             transform.Rotate(_rotator);
+            transform.Translate(_positor);
             uI.SetTorque(_rotator);
+            uI.SetVelocity(_positor);
             yield return new WaitForFixedUpdate();
         }
     }
