@@ -29,7 +29,16 @@ public class ControllerScript : MonoBehaviour
         {
             _velocity.x -= 1;
         }
-        
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            _velocity.z += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            _velocity.z -= 1;
+        }
+
+
     }
     private void FixedUpdate()
     {
