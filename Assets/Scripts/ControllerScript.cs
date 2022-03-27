@@ -13,7 +13,7 @@ public class ControllerScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        /*if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             _velocity.y += 1;
         }
@@ -39,9 +39,36 @@ public class ControllerScript : MonoBehaviour
         }
 
 
+    */
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            _rb.AddForce(new Vector3(0, 1, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            _rb.AddForce(new Vector3(0, -1, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            _rb.AddForce(new Vector3(1, 0, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            _rb.AddForce(new Vector3(-1, 0, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            _rb.AddForce(new Vector3(0, 0, 1));
+        }
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            _rb.AddForce(new Vector3(0, 0, -1));
+        }
+
     }
     private void FixedUpdate()
     {
-        _rb.velocity = _velocity;
+        //_rb.velocity = _velocity;
     }
 }
