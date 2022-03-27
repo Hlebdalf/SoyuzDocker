@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -764,14 +764,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318971175}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.83, y: -0.006711006, z: 7.58}
+  m_LocalRotation: {x: -0.21009803, y: 0.25435048, z: -0.25171182, w: 0.9098383}
+  m_LocalPosition: {x: 94.6, y: -34.3, z: 126.3}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 403211611}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -14.73, y: 36.01, z: -35.74}
 --- !u!1 &330002410
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +863,6 @@ GameObject:
   - component: {fileID: 403211614}
   - component: {fileID: 403211613}
   - component: {fileID: 403211612}
-  - component: {fileID: 403211615}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -947,18 +946,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403211610}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &403211615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 403211610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8842edc34bd38d540829473e4cdb344e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &452650758
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,7 +2335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uI: {fileID: 2022136589}
   MoveSpeed: 0.001
-  TorqSpeed: 0.01
+  TorqueSpeed: 0.001
 --- !u!1 &2116881305
 GameObject:
   m_ObjectHideFlags: 0

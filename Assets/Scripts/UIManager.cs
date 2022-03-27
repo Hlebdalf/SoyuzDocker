@@ -24,28 +24,28 @@ public class UIManager : MonoBehaviour
 
     public void SetVelocity(Vector3 velocity)
     {
-        VX.text = velocity.x.ToString();
-        VY.text = velocity.y.ToString();
-        VZ.text = velocity.z.ToString();
+        VX.text = (((int)(velocity.x * 1000)) / 1000f).ToString();
+        VY.text = (((int)(velocity.y * 1000)) / 1000f).ToString();
+        VZ.text = (((int)(velocity.z * 1000)) / 1000f).ToString();
     }
 
     public void SetTorque(Vector3 torque)
     {
-        TX.text = (((int)(torque.x * 100)) / 100f ).ToString();
-        TY.text = (((int)(torque.y * 100)) / 100f).ToString();
-        TZ.text = (((int)(torque.z * 100)) / 100f).ToString();
+        TX.text = (((int)(torque.x * 1000)) / 1000f ).ToString();
+        TY.text = (((int)(torque.y * 1000)) / 1000f).ToString();
+        TZ.text = (((int)(torque.z * 1000)) / 1000f).ToString();
     }
     public void SetKURSPosition(Vector3 position)
     {
-        PX.text = (((int)(position.x * 100)) / 100f).ToString();
-        PY.text = (((int)(position.y * 100)) / 100f).ToString();
-        PZ.text = (((int)(position.z * 100)) / 100f).ToString();
+        PX.text = (((int)(position.x * 1000)) / 1000f).ToString();
+        PY.text = (((int)(position.y * 1000)) / 1000f).ToString();
+        PZ.text = (((int)(position.z * 1000)) / 1000f).ToString();
     }
 
     public void SetKURSRotation(Vector3 rotation)
     {
-        OX.text = (((int)(rotation.x * 100)) / 100f).ToString();
-        OY.text = (((int)(rotation.y * 100)) / 100f).ToString();
-        OZ.text = (((int)(rotation.z * 100)) / 100f).ToString();
+        OX.text = (((int)(rotation.x * 1000)) / 1000f).ToString();
+        OY.text = (((int)(rotation.y * 1000)) / 1000f).ToString();
+        OZ.text = (((int)(rotation.z * 1000)) / 1000f).ToString();
     }
 }
