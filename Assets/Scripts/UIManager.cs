@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     public Text OY;
     public Text OZ;
 
+    public Text Dock;
+    public GameObject Death;
+
     public void SetVelocity(Vector3 velocity)
     {
         VX.text = (((int)(velocity.x * 1000)) / 1000f).ToString();
@@ -47,5 +50,14 @@ public class UIManager : MonoBehaviour
         OX.text = (((int)(rotation.x * 1000)) / 1000f).ToString();
         OY.text = (((int)(rotation.y * 1000)) / 1000f).ToString();
         OZ.text = (((int)(rotation.z * 1000)) / 1000f).ToString();
+    }
+    public void ShowDock()
+    {
+        Dock.gameObject.SetActive(true);
+    }
+
+    public void ShowDeath()
+    {
+        Death.gameObject.SetActive(true);
     }
 }

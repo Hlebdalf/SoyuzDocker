@@ -11,6 +11,7 @@ public class ControllerScript : MonoBehaviour
     private float _ts = 1;
     private Vector3 _rotator = new Vector3(0, 0, 0);
     private Vector3 _positor = new Vector3(0, 0, 0);
+    private bool _isDocked = false;
     private void Start()
     {
         StartCoroutine(MoverCoroutine());
@@ -75,9 +76,14 @@ public class ControllerScript : MonoBehaviour
         }
     }
 
+    public void Docked()
+    {
+        _isDocked = true;
+    }
+
     private IEnumerator MoverCoroutine()
     {
-        while (true)
+        while (!_isDocked)
         {    
             transform.Rotate(_rotator);
             transform.Translate(_positor);
