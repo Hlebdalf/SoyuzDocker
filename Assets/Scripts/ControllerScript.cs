@@ -4,66 +4,92 @@ using UnityEngine;
 
 public class ControllerScript : MonoBehaviour
 {
+    public UIManager uI;
     public float MoveSpeed = 1;
-    public float TorqSpeed = 1;
-    private Rigidbody _rb;
+    public float TorqueSpeed = 1;
+    private float _ms = 1;
+    private float _ts = 1;
+    private Vector3 _rotator = new Vector3(0, 0, 0);
+    private Vector3 _positor = new Vector3(0, 0, 0);
+    private bool _isDocked = false;
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-
+        StartCoroutine(MoverCoroutine());
     }
     private void Update()
     {
-      
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            _rb.AddForce(new Vector3(0, MoveSpeed, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            _rb.AddForce(new Vector3(0, -MoveSpeed, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            _rb.AddForce(new Vector3(MoveSpeed, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            _rb.AddForce(new Vector3(-MoveSpeed, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            _rb.AddForce(new Vector3(0, 0, MoveSpeed));
-        }
-        if (Input.GetKeyDown(KeyCode.PageDown))
-        {
-            _rb.AddForce(new Vector3(0, 0, -MoveSpeed));
-        }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.anyKey)
         {
-            _rb.AddTorque(new Vector3(0, TorqSpeed, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _rb.AddTorque(new Vector3(0, -TorqSpeed, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            _rb.AddTorque(new Vector3(-TorqSpeed, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _rb.AddTorque(new Vector3(TorqSpeed, 0, 0));
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _rb.AddTorque(new Vector3(0, 0, TorqSpeed));
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            _rb.AddTorque(new Vector3(0, 0, -TorqSpeed));
-        }
+            _ms = MoveSpeed * Random.Range(0.95f, 1.05f);
+            _ts = TorqueSpeed * Random.Range(0.95f, 1.05f);
 
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                _positor += (new Vector3(0, _ms, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                _positor += (new Vector3(0, -_ms, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                _positor += (new Vector3(_ms, 0, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                _positor += (new Vector3(-_ms, 0, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.PageUp))
+            {
+                _positor += (new Vector3(0, 0, _ms));
+            }
+            if (Input.GetKeyDown(KeyCode.PageDown))
+            {
+                _positor += (new Vector3(0, 0, -_ms));
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                _rotator += (new Vector3(0, _ts, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                _rotator += (new Vector3(0, -_ts, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                _rotator += (new Vector3(-_ts, 0, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                _rotator += (new Vector3(_ts, 0, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _rotator += (new Vector3(0, 0, _ts));
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _rotator += (new Vector3(0, 0, -_ts));
+            }
+        }
+    }
+
+    public void Docked()
+    {
+        _isDocked = true;
+    }
+
+    private IEnumerator MoverCoroutine()
+    {
+        while (!_isDocked)
+        {    
+            transform.Rotate(_rotator);
+            transform.Translate(_positor);
+            uI.SetTorque(_rotator);
+            uI.SetVelocity(_positor);
+            yield return new WaitForFixedUpdate();
+        }
     }
 }
